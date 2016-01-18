@@ -31,7 +31,7 @@ public class PolynomialDie implements Die {
         return numberOfSides;
     }
 
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Die otherDie) {
+        return this.facingNumber - otherDie.getFacingNumber();
     }
 }
