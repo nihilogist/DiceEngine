@@ -68,4 +68,9 @@ public class PolynomialDieTest {
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void whenCreatingADieItMustHaveAPositiveNumberOfSides() {
+        PolynomialDie nonsensicalDie = new PolynomialDie(0);
+    }
+
 }

@@ -14,6 +14,9 @@ public class PolynomialDie implements Die {
     }
 
     protected PolynomialDie(int numberOfSides, NumberGenerator numberGenerator) {
+        if (numberOfSides < 1) {
+            throw new IllegalArgumentException("Polynomial die with fewer than 1 sides is nonsensical.");
+        }
         this.numberOfSides = numberOfSides;
         this.numberGenerator = numberGenerator;
         this.facingNumber = 1;
