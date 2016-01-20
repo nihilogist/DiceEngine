@@ -2,16 +2,8 @@ package org.dave3heaton.diceengine.engine;
 
 public class ExplodingPolynomialDie extends AbstractBasicDie implements Die {
 
-    private int numberOfSides;
-    private NumberGenerator numberGenerator;
-
     protected ExplodingPolynomialDie(int numberOfSides, NumberGenerator numberGenerator) {
-        if (numberOfSides < 1) {
-            throw new IllegalArgumentException("Die must have greater than 0 sides to give useful results.");
-        }
-        this.numberOfSides = numberOfSides;
-        this.numberGenerator = numberGenerator;
-        this.facingNumber = 1;
+        super(numberOfSides, numberGenerator);
     }
 
     public ExplodingPolynomialDie(int numberOfSides) {
