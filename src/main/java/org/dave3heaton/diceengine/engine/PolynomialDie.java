@@ -1,12 +1,8 @@
 package org.dave3heaton.diceengine.engine;
 
-/**
- * Created by david.heaton on 1/18/16.
- */
-public class PolynomialDie implements Die {
+public class PolynomialDie extends AbstractBasicDie implements Die {
 
     private int numberOfSides;
-    private int facingNumber;
     private NumberGenerator numberGenerator;
 
     public PolynomialDie(int numberOfSides) {
@@ -26,15 +22,9 @@ public class PolynomialDie implements Die {
         facingNumber = numberGenerator.getRandomNumberToMaxValue(numberOfSides);
     }
 
-    public int getFacingNumber() {
-        return facingNumber;
-    }
-
     public int getNumberOfSides() {
         return numberOfSides;
     }
 
-    public int compareTo(Die otherDie) {
-        return this.facingNumber - otherDie.getFacingNumber();
-    }
+
 }
