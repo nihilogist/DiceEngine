@@ -1,12 +1,12 @@
 package org.dave3heaton.diceengine.engine;
 
 
-public interface Die extends Comparable<Die> {
+public interface Die extends Rollable {
 
-    void roll();
-
-    int getFacingNumber();
-
+    /**
+     * Returns the number of sides on a given dice.
+     * @return
+     */
     int getNumberOfSides();
 
 }

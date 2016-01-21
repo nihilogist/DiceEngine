@@ -20,7 +20,7 @@ public abstract class AbstractBasicDie implements Die {
         return facingNumber;
     }
 
-    public int compareTo(Die otherDie) {
+    public int compareTo(Rollable otherDie) {
         return this.facingNumber - otherDie.getFacingNumber();
     }
 
