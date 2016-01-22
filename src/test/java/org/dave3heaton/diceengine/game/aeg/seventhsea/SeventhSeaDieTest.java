@@ -4,6 +4,7 @@ import org.dave3heaton.diceengine.engine.NumberGenerator;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -42,6 +43,15 @@ public class SeventhSeaDieTest {
         seventhSeaDie.roll();
 
         assertEquals(10, seventhSeaDie.getFacingNumber());
+    }
+
+    @Test
+    public void aSeventhSeaDieShouldBeAbleToBeMarkedAsAKeptDie() {
+        SeventhSeaDie seventhSeaDie = new SeventhSeaDie(true);
+        assertTrue(!seventhSeaDie.isKept());
+
+        seventhSeaDie.setKept(true);
+        assertTrue(seventhSeaDie.isKept());
     }
 
 

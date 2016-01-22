@@ -7,6 +7,7 @@ import org.dave3heaton.diceengine.engine.RandomNumberGenerator;
 public class SeventhSeaDie extends ExplodingPolynomialDie {
 
     private boolean isExploding;
+    private boolean isKept;
 
     public SeventhSeaDie(boolean exploding) {
         this(exploding, new RandomNumberGenerator());
@@ -15,6 +16,7 @@ public class SeventhSeaDie extends ExplodingPolynomialDie {
     protected SeventhSeaDie(boolean exploding, NumberGenerator numberGenerator) {
         super(10, numberGenerator);
         this.isExploding = exploding;
+        this.isKept = false;
     }
 
     @Override
@@ -24,6 +26,14 @@ public class SeventhSeaDie extends ExplodingPolynomialDie {
         } else {
             this.facingNumber = numberGenerator.getRandomNumberToMaxValue(getNumberOfSides());
         }
+    }
+
+    public boolean isKept() {
+        return isKept;
+    }
+
+    public void setKept(boolean isKept) {
+        this.isKept = isKept;
     }
 
 }

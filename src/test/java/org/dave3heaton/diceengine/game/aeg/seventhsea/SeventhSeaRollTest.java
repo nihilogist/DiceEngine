@@ -115,5 +115,32 @@ public class SeventhSeaRollTest {
         assertEquals(17, rollTwoKeepOneRoll.getFacingNumber());
     }
 
+    @Test
+    public void forASeventhSeaRollIWantToAccessTheIndividualDice() {
+        NumberGenerator mockNumberGenerator = mock(NumberGenerator.class);
+        when(mockNumberGenerator.getRandomNumberToMaxValue(10)).thenReturn(4).thenReturn(10).thenReturn(7);
+
+        SeventhSeaRoll rollTwoKeepOneRoll = new SeventhSeaRoll(2, 1, true, mockNumberGenerator);
+        rollTwoKeepOneRoll.roll();
+
+        assertEquals(2, rollTwoKeepOneRoll.getAllDice().size());
+        assertEquals(17, rollTwoKeepOneRoll.getAllDice().get(0).getFacingNumber());
+        assertEquals(4, rollTwoKeepOneRoll.getAllDice().get(1).getFacingNumber());
+    }
+
+    @Test
+    public void forASeventhSeaRollIWantToDetermineIfADieWasKeptOrNot() {
+        NumberGenerator mockNumberGenerator = mock(NumberGenerator.class);
+        when(mockNumberGenerator.getRandomNumberToMaxValue(10)).thenReturn(4).thenReturn(10).thenReturn(7);
+
+        SeventhSeaRoll rollTwoKeepOneRoll = new SeventhSeaRoll(2, 1, true, mockNumberGenerator);
+        rollTwoKeepOneRoll.roll();
+
+        assertEquals(17, rollTwoKeepOneRoll.getFacingNumber());
+        assertTrue(rollTwoKeepOneRoll.getAllDice().get(0).isKept());
+        assertTrue(!rollTwoKeepOneRoll.getAllDice().get(1).isKept());
+
+    }
+
 
 }
