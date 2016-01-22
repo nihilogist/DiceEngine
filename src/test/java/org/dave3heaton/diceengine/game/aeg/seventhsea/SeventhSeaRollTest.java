@@ -142,5 +142,31 @@ public class SeventhSeaRollTest {
 
     }
 
+    @Test
+    public void whenRollingManyDiceExpectCorrectSorting() {
+        NumberGenerator mockNumberGenerator = mock(NumberGenerator.class);
+        when(mockNumberGenerator.getRandomNumberToMaxValue(10)).thenReturn(4).thenReturn(6).thenReturn(10).thenReturn(2);
+
+        SeventhSeaRoll rollTwoKeepOneRoll = new SeventhSeaRoll(3, 1, true, mockNumberGenerator);
+        rollTwoKeepOneRoll.roll();
+
+        assertEquals(12, rollTwoKeepOneRoll.getFacingNumber());
+        assertTrue(rollTwoKeepOneRoll.getAllDice().get(0).isKept());
+        assertTrue(!rollTwoKeepOneRoll.getAllDice().get(1).isKept());
+    }
+
+    @Test
+    public void testFromAndroidMock() {
+        NumberGenerator mockNumberGenerator = mock(NumberGenerator.class);
+        when(mockNumberGenerator.getRandomNumberToMaxValue(10)).thenReturn(6).thenReturn(2).thenReturn(5).thenReturn(7).thenReturn(7).thenReturn(9).thenReturn(5);
+
+        SeventhSeaRoll rollTwoKeepOneRoll = new SeventhSeaRoll(7,5, true, mockNumberGenerator);
+        rollTwoKeepOneRoll.roll();
+
+        assertEquals(34, rollTwoKeepOneRoll.getFacingNumber());
+        assertTrue(rollTwoKeepOneRoll.getAllDice().get(0).isKept());
+        assertTrue(rollTwoKeepOneRoll.getAllDice().get(1).isKept());
+    }
+
 
 }

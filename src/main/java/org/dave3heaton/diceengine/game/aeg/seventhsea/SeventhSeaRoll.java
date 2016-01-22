@@ -57,6 +57,7 @@ public class SeventhSeaRoll implements Rollable {
             seventhSeaDie.roll();
         }
 
+        Collections.sort(seventhSeaDice);
         Collections.reverse(seventhSeaDice);
         int scoreTotal = 0;
         for (int i = 0; i < diceToKeep; i++) {
