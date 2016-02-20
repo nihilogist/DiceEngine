@@ -16,6 +16,7 @@ public class SeventhSeaRoll implements Rollable {
     private int diceToKeep;
     private boolean isExploding;
     private List<SeventhSeaDie> seventhSeaDice;
+    private List<SeventhSeaDie> dramaDice;
 
     protected SeventhSeaRoll(int diceToRoll, int diceToKeep, boolean isExploding, NumberGenerator numberGenerator) {
         if (diceToRoll < 1 || diceToKeep < 1) {
@@ -35,6 +36,7 @@ public class SeventhSeaRoll implements Rollable {
         this.numberGenerator = numberGenerator;
         this.isExploding = isExploding;
         this.seventhSeaDice = new ArrayList<SeventhSeaDie>();
+        this.dramaDice = new ArrayList<SeventhSeaDie>();
     }
 
     public SeventhSeaRoll(int diceToRoll, int diceToKeep) {
@@ -48,6 +50,8 @@ public class SeventhSeaRoll implements Rollable {
     public void roll() {
         // Clear the list
         seventhSeaDice.clear();
+        // Also clear the drama dice list
+        dramaDice.clear();
         for (int i = 0; i < diceToRoll; i++) {
             seventhSeaDice.add(new SeventhSeaDie(isExploding, numberGenerator));
         }
@@ -63,8 +67,18 @@ public class SeventhSeaRoll implements Rollable {
         }
     }
 
+    public void addDramaDice() {
+        SeventhSeaDie dramaDie = new SeventhSeaDie(true, numberGenerator);
+        dramaDie.roll();
+        dramaDice.add(dramaDie);
+    }
+
     public List<SeventhSeaDie> getAllDice() {
         return seventhSeaDice;
+    }
+
+    public List<SeventhSeaDie> getDramaDice() {
+        return dramaDice;
     }
 
     public int getFacingNumber() {
@@ -79,6 +93,10 @@ public class SeventhSeaRoll implements Rollable {
                 }
 
             }
+        }
+
+        for (SeventhSeaDie dramaDie : dramaDice) {
+            scoreTotal += dramaDie.getFacingNumber();
         }
 
         return scoreTotal;
