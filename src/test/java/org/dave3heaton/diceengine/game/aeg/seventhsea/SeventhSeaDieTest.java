@@ -54,6 +54,22 @@ public class SeventhSeaDieTest {
         assertTrue(seventhSeaDie.isKept());
     }
 
+    @Test
+    public void aSeventhSeaDieShouldBeAbleToToggleBetweenExplodingAndNot() {
+        NumberGenerator mockNumberGenerator = mock(NumberGenerator.class);
+        when(mockNumberGenerator.getRandomNumberToMaxValue(10)).thenReturn(10).thenReturn(4).thenReturn(6).thenReturn(8);
+
+        SeventhSeaDie seventhSeaDie = new SeventhSeaDie(false, mockNumberGenerator);
+        seventhSeaDie.roll();
+
+        assertEquals(10, seventhSeaDie.getFacingNumber());
+
+        seventhSeaDie.setExploding(true);
+        assertEquals(14, seventhSeaDie.getFacingNumber());
+    }
+
+
+
 
 
 

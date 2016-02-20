@@ -20,11 +20,11 @@ public class SeventhSeaDie extends ExplodingPolynomialDie {
     }
 
     @Override
-    public void roll() {
+    public int getFacingNumber() {
         if (isExploding) {
-            super.roll();
+            return this.facingNumber;
         } else {
-            this.facingNumber = numberGenerator.getRandomNumberToMaxValue(getNumberOfSides());
+            return getFacingNumberUpToMaximumOfTen();
         }
     }
 
@@ -34,6 +34,18 @@ public class SeventhSeaDie extends ExplodingPolynomialDie {
 
     public void setKept(boolean isKept) {
         this.isKept = isKept;
+    }
+
+    public void setExploding(boolean isExploding) {
+        this.isExploding = isExploding;
+    }
+
+    private int getFacingNumberUpToMaximumOfTen() {
+        if (facingNumber < 10) {
+            return facingNumber;
+        } else {
+            return 10;
+        }
     }
 
 }

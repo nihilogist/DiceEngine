@@ -14,7 +14,6 @@ public class SeventhSeaRoll implements Rollable {
 
     private int diceToRoll;
     private int diceToKeep;
-    private int facingNumber;
     private boolean isExploding;
     private List<SeventhSeaDie> seventhSeaDice;
 
@@ -59,12 +58,9 @@ public class SeventhSeaRoll implements Rollable {
 
         Collections.sort(seventhSeaDice);
         Collections.reverse(seventhSeaDice);
-        int scoreTotal = 0;
         for (int i = 0; i < diceToKeep; i++) {
-            scoreTotal += seventhSeaDice.get(i).getFacingNumber();
             seventhSeaDice.get(i).setKept(true);
         }
-        facingNumber = scoreTotal;
     }
 
     public List<SeventhSeaDie> getAllDice() {
@@ -72,7 +68,28 @@ public class SeventhSeaRoll implements Rollable {
     }
 
     public int getFacingNumber() {
-        return facingNumber;
+        int scoreTotal = 0;
+
+        for (SeventhSeaDie die : seventhSeaDice) {
+            if (die.isKept()) {
+                if (isExploding) {
+                    scoreTotal += die.getFacingNumber();
+                } else {
+                    scoreTotal += getDieResultUpToTen(die);
+                }
+
+            }
+        }
+
+        return scoreTotal;
+    }
+
+    private int getDieResultUpToTen(SeventhSeaDie die) {
+        if (die.getFacingNumber() > 10) {
+            return 10;
+        } else {
+            return die.getFacingNumber();
+        }
     }
 
     public int compareTo(Rollable o) {
@@ -85,5 +102,12 @@ public class SeventhSeaRoll implements Rollable {
 
     public int getDiceToKeep() {
         return diceToKeep;
+    }
+
+    public void setExploding(boolean isExploding) {
+        this.isExploding = isExploding;
+        for (SeventhSeaDie die : getAllDice()) {
+            die.setExploding(isExploding);
+        }
     }
 }
